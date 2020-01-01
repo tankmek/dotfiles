@@ -6,6 +6,22 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias cp='cp -v'
+alias mv='mv -v'
+alias rm='rm -v'
+# always make full path
+alias mkdir='mkdir -p -v'
+
+# do ls after cd
+cd ()
+{
+ 	if [ -n "$1" ]; then
+ 		builtin cd "$@" && ls
+ 	else
+ 		builtin cd ~ && ls
+ 	fi
+}
+
 # enable color support of ls and also add handy aliases
 if [ -x /bin/dircolors ]; then
     test -r ~/.dir_colors && eval "$(dircolors -b ~/.dir_colors)" || eval "$(dircolors -b)"
@@ -17,12 +33,16 @@ fi
 
 alias tmux='tmux -2'
 
+alias update='sudo slackpkg update && sudo sbocheck'
+
 bind -x '"\C-l": clear'
 alias fix='echo -e "\033c"'
 alias bp='printf "\e[?2004l"'
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 alias ll='ls -alF'
 
+alias weather='curl wttr.in/grovetown'
+alias gip='curl ifconfig.co'
 alias sshno='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o ControlPath=none'
 
 # Add an "alert" alias for long running commands.
