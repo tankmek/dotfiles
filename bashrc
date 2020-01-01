@@ -55,10 +55,8 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\342\234\227\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]\\$\[\e[0m\] "
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\342\234\227\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]\\$\[\e[0m\] "
-    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 
 unset color_prompt force_color_prompt
@@ -67,7 +65,6 @@ unset color_prompt force_color_prompt
 case "$TERM" in
 xterm*|rxvt*)
     PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\342\234\227\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]\\$\[\e[0m\] "
-    #PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
 *)
     ;;
@@ -79,9 +76,18 @@ if [ -f $HOME/.bash_aliases ]; then
 fi
 
 # GIT bash integration
-if [[ -e /usr/doc/git-2.14.5/contrib/completion/git-prompt.sh ]]; then
+RHEL='/usr/share/git-core/contrib/completion/git-prompt.sh'
+SLCK='/usr/doc/git-2.14.5/contrib/completion/git-prompt.sh'
 
-        source /usr/doc/git-2.14.5/contrib/completion/git-prompt.sh
+if [[ -e $RHEL ]]; then
+  GPROMPT=$RHEL
+  else
+    GPROMPT=$SLCK
+fi
+
+if [[ -e $GPROMPT ]]; then
+
+        source $GPROMPT
 
         export GIT_PS1_SHOWCOLORHINTS=true
         export GIT_PS1_SHOWDIRTYSTATE=true
