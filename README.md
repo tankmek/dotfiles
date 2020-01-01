@@ -1,2 +1,12 @@
-# config
-a collection of my Linux configuration files.
+```
+_________________________
+< Slackware linux configs >
+-------------------------
+      \   ^__^
+       \  (oo)\_______
+          (__)\       )\/\
+              ||----w |
+              ||     ||
+```
+## My dotfiles
+a collection of my linux configuration files.
