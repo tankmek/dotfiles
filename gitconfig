@@ -1,0 +1,19 @@
+[user]
+	name = tankmek
+	email = michael@edie.io
+[core]
+    pager = less -eFiJM~ -j3 --tabs=3
+	editor = vim
+[github]
+  # https://github.com/blog/180-local-github-config
+  user = tankmek 
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[gpg]
+    program = gpg2
+[alias]
+        co = checkout
+        lg = log -n10 --pretty=format:\"%C(magenta)%h%Creset %C(blue)%ad%Creset %<(100)%s %C(cyan)[%an]%Creset\" --date=short
