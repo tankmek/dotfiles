@@ -1,0 +1,15 @@
+[user]
+	name = tankmek
+	email = michael@edie.io
+[core]
+	editor = vim
+[github]
+  # https://github.com/blog/180-local-github-config
+  user = tankmek 
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[gpg]
+    program = gpg2
