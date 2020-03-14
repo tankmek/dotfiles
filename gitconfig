@@ -4,9 +4,13 @@
 [core]
     pager = less -eFiJM~ -j3 --tabs=3
 	editor = vim
+    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 [github]
   # https://github.com/blog/180-local-github-config
   user = tankmek 
+[push]
+	# https://git-scm.com/docs/git-config#git-config-pushdefault
+	default = simple
 [color]
 	branch = auto
 	diff = auto
@@ -16,4 +20,5 @@
     program = gpg2
 [alias]
         co = checkout
+        # will not work if $LESS env var is set
         lg = log -n10 --pretty=format:\"%C(magenta)%h%Creset %C(blue)%ad%Creset %<(100)%s %C(cyan)[%an]%Creset\" --date=short
