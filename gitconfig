@@ -1,6 +1,7 @@
 [user]
 	name = tankmek
 	email = michael@edie.io
+    signingkey = B94FEF97E49C9A75
 [core]
     pager = less -eFiJM~ -j3 --tabs=3
 	editor = vim
@@ -16,6 +17,7 @@
 	diff = auto
 	interactive = auto
 	status = auto
+    ui  = true
 [gpg]
     program = gpg2
 [alias]
