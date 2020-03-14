@@ -17,6 +17,7 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export HISTCONTROL=ignoreboth
 export GOPATH="$HOME"
+export LESS=eFRX
 
 history -a
 #
