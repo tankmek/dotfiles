@@ -98,3 +98,5 @@ if [[ -e $GPROMPT ]]; then
         # use existing PS1 settings
         PROMPT_COMMAND='__git_ps1'
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
