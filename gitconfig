@@ -22,5 +22,7 @@
     program = gpg2
 [alias]
         co = checkout
+        # amend to the previous commit
+        amend = !git add -A && git commit --amend --no-edit
         # will not work if $LESS env var is set
         lg = log -n10 --pretty=format:\"%C(magenta)%h%Creset %C(blue)%ad%Creset %<(100)%s %C(cyan)[%an]%Creset\" --date=short

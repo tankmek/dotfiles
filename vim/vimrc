@@ -20,7 +20,6 @@ set guifont=Fira\ Mono\ 9
 set ttyfast
 "set list
 "set listchars=tab:>-,trail:- " show tabs and trailing whitespace
-set nomodeline
 "set cursorcolumn
 set cursorline
 set mouse=
@@ -72,6 +71,7 @@ set splitbelow
 set hlsearch
 set showcmd
 set number
+set relativenumber
 filetype plugin indent on
 set t_vb=''
 "
