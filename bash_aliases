@@ -48,5 +48,6 @@ alias sshno='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no
 # Add an "alert" alias for long running commands.
 # sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
+# fix tmux when messed up by ctrl chars
+# stty sane; printf '\033k%s\033\\\033]2;%s\007' "basename "$SHELL"" "uname -n"; tput reset; tmux refresh
 

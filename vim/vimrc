@@ -127,8 +127,8 @@ hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=whi
 
 " Spacing by FileType
 autocmd FileType python setlocal ai ts=4 sw=4 et
-autocmd FileType yaml setlocal ai ts=2 sw=2 et
-autocmd FileType yml setlocal ai ts=2 sw=2 et
+autocmd FileType yaml setlocal ai ts=2 sw=2 et nu
+autocmd FileType yml setlocal ai ts=2 sw=2 et nu
 
 
 let &t_SI .= "\<Esc>[?2004h"

@@ -3,7 +3,7 @@
 
 ## Environment variables are inherited by child procs
 # ssh keys
-KEYS="fakelabs-ed25519 sawbox-ed25519 id_rsa"
+KEYS="fakelabs-ed25519 sawbox-ed25519 id_rsa ansible_ed25519"
 
 export PATH="/bin:/usr/bin:/usr/sbin:/sbin:${HOME}.local/bin:/opt/idea/bin:/usr/games"
 export HISTSIZE="" # from the source code empty is unstifled
@@ -40,6 +40,6 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # add $KEYS to ssh-agent
-if [ -x /usr/bin/keychain ]; then
+if [ -x /usr/bin/keychain ] || [ -x /bin/keychain ]; then
   eval $(keychain --eval --agents ssh $KEYS)
 fi
