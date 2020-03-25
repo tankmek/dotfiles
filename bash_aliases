@@ -44,6 +44,7 @@ alias ll='ls -alF'
 alias weather='curl wttr.in/grovetown'
 alias gip='curl ifconfig.co'
 alias sshno='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o ControlPath=none'
+alias preview='fzf --height=50% --layout=reverse --preview="bat --color=always {}"'
 
 # Add an "alert" alias for long running commands.
 # sleep 10; alert

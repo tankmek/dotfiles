@@ -1,0 +1,2 @@
+#!/bin/sh
+find /tmp -mtime +60 -exec rm -rf {} \; 2>/dev/null >/var/log/tmpclean.log
