@@ -40,6 +40,7 @@ alias fix='echo -e "\033c"'
 alias bp='printf "\e[?2004l"'
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 alias ll='ls -alF'
+alias gs='git status -s'
 
 alias weather='curl wttr.in/grovetown'
 alias gip='curl ifconfig.co'

@@ -1,10 +1,10 @@
 [user]
-	name = tankmek
-	email = michael@edie.io
+    name = tankmek
+    email = michael@edie.io
     signingkey = B94FEF97E49C9A75
 [core]
     pager = less -eFiJM~ -j3 --tabs=3
-	editor = vim
+    editor = vim
     whitespace = space-before-tab,-indent-with-non-tab,trailing-space
     # Speed up commands involving untracked files such as `git status`.
     # https://git-scm.com/docs/git-update-index#_untracked_cache
@@ -13,13 +13,13 @@
   # https://github.com/blog/180-local-github-config
   user = tankmek 
 [push]
-	# https://git-scm.com/docs/git-config#git-config-pushdefault
-	default = simple
+    # https://git-scm.com/docs/git-config#git-config-pushdefault
+    default = simple
 [color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	status = auto
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
     ui  = true
 [gpg]
     program = gpg2
@@ -29,3 +29,5 @@
         amend = !git add -A && git commit --amend --no-edit
         # will not work if $LESS env var is set
         lg = log -n10 --pretty=format:\"%C(magenta)%h%Creset %C(blue)%ad%Creset %<(100)%s %C(cyan)[%an]%Creset\" --date=short
+[url "git@github.com:"]
+	insteadOf = https://github.com/
