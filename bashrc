@@ -19,11 +19,10 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /bin/lesspipe.sh ] && eval "$(SHELL=/bin/sh lesspipe.sh)"
-
-
-# export PS1="\[\e[37m\]\u\[\e[31m\]@\[\e[1;92m\]\h\[\e[0m\](\W):\\$ "
+# Set the Less input preprocessor.
+if type lesspipe.sh >/dev/null 2>&1; then
+  export LESSOPEN='|lesspipe.sh %s'
+fi
 
 # append to the history file, don't overwrite it
 shopt -s histappend
