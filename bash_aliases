@@ -41,15 +41,18 @@ alias bp='printf "\e[?2004l"'
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 alias ll='ls -alF'
 alias gs='git status -s'
+alias cd..='cd ..'
 
 alias weather='curl wttr.in/grovetown'
 alias gip='curl ifconfig.co'
 alias sshno='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o ControlPath=none'
 alias preview='fzf --height=50% --layout=reverse --preview="bat --color=always {}"'
-
+# alias cat with bat if installed
+if type bat &> /dev/null; then
+    alias cat='bat'
+fi
 # Add an "alert" alias for long running commands.
 # sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 # fix tmux when messed up by ctrl chars
 # stty sane; printf '\033k%s\033\\\033]2;%s\007' "basename "$SHELL"" "uname -n"; tput reset; tmux refresh
-

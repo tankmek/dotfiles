@@ -20,7 +20,7 @@ case "$TERM" in
 esac
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe.sh ] && eval "$(SHELL=/bin/sh lesspipe.sh)"
+[ -x /bin/lesspipe.sh ] && eval "$(SHELL=/bin/sh lesspipe.sh)"
 
 
 # export PS1="\[\e[37m\]\u\[\e[31m\]@\[\e[1;92m\]\h\[\e[0m\](\W):\\$ "
