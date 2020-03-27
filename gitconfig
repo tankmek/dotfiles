@@ -2,6 +2,7 @@
     name = tankmek
     email = michael@edie.io
     signingkey = B94FEF97E49C9A75
+
 [core]
     pager = less -eFiJM~ -j3 --tabs=3
     editor = vim
@@ -9,25 +10,33 @@
     # Speed up commands involving untracked files such as `git status`.
     # https://git-scm.com/docs/git-update-index#_untracked_cache
     untrackedCache = true
+
 [github]
   # https://github.com/blog/180-local-github-config
   user = tankmek 
+
 [push]
     # https://git-scm.com/docs/git-config#git-config-pushdefault
     default = simple
+
 [color]
     branch = auto
     diff = auto
     interactive = auto
     status = auto
     ui  = true
+
 [gpg]
     program = gpg2
+
 [alias]
-        co = checkout
-        # amend to the previous commit
-        amend = !git add -A && git commit --amend --no-edit
-        # will not work if $LESS env var is set
-        lg = log -n10 --pretty=format:\"%C(magenta)%h%Creset %C(blue)%ad%Creset %<(100)%s %C(cyan)[%an]%Creset\" --date=short
+    co = checkout
+    # amend to the previous commit
+    amend = !git add -A && git commit --amend --no-edit
+    # will not work if $LESS env var is set
+    lg =log -n10 --pretty=format:\"%C(magenta)%h%Creset %C(blue)%ad%Creset %<(100)%s %C(cyan)[%an]%Creset\" --date=short
+    gg =log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cgreen<%an>\" --abbrev-commit
+
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+
