@@ -24,6 +24,10 @@ if type lesspipe.sh >/dev/null 2>&1; then
   export LESSOPEN='|lesspipe.sh %s'
 fi
 
+function cless () {
+    LESSOPEN="| /bin/src-hilite-lesspipe.sh %s" less "$1";
+}
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
