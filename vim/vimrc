@@ -65,8 +65,8 @@ set preserveindent
 set fo=tcrq
 set nosmartindent
 set autoindent
-set foldmethod=syntax
-set foldlevel=1
+"set foldmethod=syntax
+"set foldlevel=1
 set ignorecase
 set smartcase
 set splitbelow
