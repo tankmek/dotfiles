@@ -1,0 +1,326 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# Dual Dell WFP3008 LCD Monitors
+exec --no-startup-id xrandr --output DP1 --left-of DP2 --mode 2560x1600
+#exec_always --no-startup-id xrandr --output DP2 --mode 2560x1600
+#
+
+
+# color variables for gruvbox
+ set $background  #1d2021
+ set $foreground  #ebdbb2
+ set $fg0         #fbf1c7
+ set $black       #282828
+ set $darkgrey    #928374
+ set $darkred     #cc241d
+ set $red         #fb4934
+ set $darkgreen   #98971a
+ set $green       #b8bb26
+ set $darkyellow  #d79921
+ set $yellow      #fabd2f
+ set $darkblue    #458588
+ set $blue        #83a598
+ set $darkmagenta #b16286
+ set $magenta     #d3869b
+ set $darkcyan    #689d6a
+ set $cyan        #8ec07c
+ set $lightgrey   #a89984
+ set $white       #ebdbb2
+ set $darkorange  #d65d0e
+ set $orange      #fe8019
+ set $bg1         #3c3836
+
+#set $mon1 DP1
+#set $mon2 DP2
+###
+set $mon1 LVDS1
+set $mon2 LVDS1
+
+# Use Menu Button as second $mod
+exec_always --no-startup-id xmodmap -e 'keycode 135 = Super_R' && xset -r 135
+set $mod Mod4
+set $term terminator
+# Pulse Audio controls
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+#
+# # Sreen brightness controls
+ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+#
+# # Touchpad controls
+# bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# class                 border  backgr. text    indicator child_border
+# client.focused          #770000 #285577 #ffffff #770000   #770000
+# client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+# client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+# client.urgent           #2f343a #900000 #ffffff #900000   #900000  
+# client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+# colour of border, background, text, indicator, and child_border
+# client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
+# client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
+# client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
+# client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
+# client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
+# client.background           #2f343f
+#
+# Gruvbox Colors
+# class                 border      backgr.     text        indicator   child_border
+client.focused          $darkorange $darkorange $foreground $foreground
+client.focused_inactive $bg1        $black      $foreground $darkgrey
+client.unfocused        $bg1        $bg1        $foreground $darkgrey
+client.urgent           $red        $red        $background $red
+client.placeholder      #000000     #0c0c0c     #fdf6e3     #000000     #0c0c0c
+client.background       #ffffff
+
+
+assign [class="Firefox"] ""
+assign [class="Chromium"] ""
+
+workspace_auto_back_and_forth yes
+force_display_urgency_hint 0 ms
+focus_on_window_activation urgent
+
+# Font for window titles & taskbar(s)
+font pango:Fira Mono 7
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Application Bindings
+bindsym $mod+Return exec --no-startup-id $term
+bindsym $mod+m exec --no-startup-id mousepad
+bindsym $mod+x exec --no-startup-id i3lock -i ~/Pictures/xkcd_lemonade.png -e -c 001933 -p default -n -t
+bindsym $mod+t exec --no-startup-id Thunar
+bindsym $mod+c exec --no-startup-id chromium
+bindsym $mod+b exec --no-startup-id firefox
+bindsym $mod+g exec --no-startup-id gvim
+bindsym Print exec "ksnapshot -caption %c"
+# kill focused window
+bindsym $mod+BackSpace kill
+for_window [title="tty-clock"] floating enable border pixel 2
+
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec --no-startup-id "rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
+bindsym $mod+Tab exec rofi -show window
+# For use with xfce4 whisker popup menu in Mint XFCE:
+# bindsym $mod+Shift+d exec dmenu_run
+#bindsym $mod+d exec --no-startup-id xfce4-popup-whiskermenu
+bindsym XF86Calculator exec galculator
+for_window [window_type="dialog,utility,toolbar,splash,menu,dropdown_menu,notification,dock"] floating enable border pixel 1
+#for_window [class="VMware Workstation"] floating enable, move to workspace $ws10 
+
+# Window Roles
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="prefwindow"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_role="About"] floating enable 
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
+# Window Classes
+for_window [class="Konsole"] border pixel 2
+#for_window [class="Thunar"] floating enable
+for_window [class="Firefox"] border pixel 0
+for_window [class="Mousepad"] border pixel 2
+for_window [class="Chromium"] border pixel 2,focus
+for_window [class="Xfce4-terminal"] border pixel 3
+for_window [class="(?i)nm-connection-editor"] floating enable
+for_window [class="Galculator"] floating enable
+for_window [class="notify"] floating enable
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+#for_window [class="VirtualBox"] floating enable 
+for_window [title="^Terminator Preferences$"] floating enable
+
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+Shift+w split h;exec notify-send 'split horizontally'
+
+# split in vertical orientation
+bindsym $mod+v split v;exec notify-send 'split vertically'
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+#
+# Start my defaults layouts on boot
+# # exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace-1.json'"
+# # exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspace-2.json'"
+# # exec --no-startup-id "i3-msg 'workspace 3; append_layout ~/.config/i3/workspace-3.json'"
+# # exec --no-startup-id "i3-msg 'workspace 4; append_layout ~/.config/i3/workspace-4.json'"
+#
+
+set $ws01 ""
+set $ws02 "2"
+set $ws03 "3"
+set $ws04 "4"
+set $ws05 "5"
+set $ws06 ""
+set $ws07 ""
+set $ws08 "8"
+set $ws09 "9"
+set $ws10 "10"
+
+bindsym $mod+Shift+p exec "pgrep xfce4-panel && xfce4-panel -q || xfce4-panel -d"
+# focus the child container
+#bindsym $mod+d focus child
+workspace $ws01 output $mon1 
+workspace $ws02 output $mon1 
+workspace $ws03 output $mon1 
+workspace $ws04 output $mon1 
+workspace $ws05 output $mon1 
+workspace $ws06 output $mon2 
+workspace $ws07 output $mon2 
+workspace $ws08 output $mon2 
+workspace $ws09 output $mon2 
+workspace $ws10 output $mon2 
+
+
+# switch to workspace
+bindsym $mod+1 workspace $ws01
+bindsym $mod+2 workspace $ws02
+bindsym $mod+3 workspace $ws03
+bindsym $mod+4 workspace $ws04
+bindsym $mod+5 workspace $ws05
+bindsym $mod+6 workspace $ws06
+bindsym $mod+7 workspace $ws07
+bindsym $mod+8 workspace $ws08
+bindsym $mod+9 workspace $ws09
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws01
+bindsym $mod+Shift+2 move container to workspace $ws02
+bindsym $mod+Shift+3 move container to workspace $ws03
+bindsym $mod+Shift+4 move container to workspace $ws04
+bindsym $mod+Shift+5 move container to workspace $ws05
+bindsym $mod+Shift+6 move container to workspace $ws06
+bindsym $mod+Shift+7 move container to workspace $ws07
+bindsym $mod+Shift+8 move container to workspace $ws08
+bindsym $mod+Shift+9 move container to workspace $ws09
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+#-old-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec xfce4-session-logout
+
+#bar {
+#   	position top
+   #  The display is connected either via HDMI or via DisplayPort
+#             output DP2
+#		status_command i3status	
+#		tray_output none
+#}
+
+#bar {
+#   	position top
+   #  The display is connected either via HDMI or via DisplayPort
+#             output DP1
+	#status_command i3status	
+#	width
+#	tray_output DP1
+		
+#}
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+
+
+exec --no-startup-id redshift
+exec_always --no-startup-id nitrogen --restore
+#for_window [class="^Konsole$" role="^roOt$"] floating enable
+bindsym $mod+z exec --no-startup-id st -name=RoOt -e tmux
+#exec pulseaudio --start
+#exec --no-startup-id xfce4-panel --disable-wm-check
+exec --no-startup-id "compton -b"
+# Set inner/outer gaps
+gaps inner 5
+gaps outer 5
+smart_borders on
+
+#bindsym $mod+Tab workspace back_and_forth
+#navigate workspaces next / previous
+bindsym Mod1+Ctrl+Right workspace next
+bindsym Mod1+Ctrl+Left workspace prev
+
+#Popups during fullscreen mode
+popup_during_fullscreen smart
+
+# Scratchpad
+bindsym $mod+Shift+BackSpace move scratchpad
+bindsym $mod+grave scratchpad show
