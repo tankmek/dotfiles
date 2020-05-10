@@ -8,7 +8,8 @@ set background=dark
 " To enable 256 colors in vim,
 " put this your .vimrc before setting the colorscheme:
 set t_Co=256
-colorscheme gruvbox
+"colorscheme gruvbox
+colorscheme dracula
 syntax on
 let g:Powerline_symbols = "fancy"
 set termencoding=utf-8 
