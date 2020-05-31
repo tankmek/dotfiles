@@ -7,9 +7,10 @@ execute pathogen#infect()
 set background=dark
 " To enable 256 colors in vim,
 " put this your .vimrc before setting the colorscheme:
-set t_Co=256
+"set t_Co=256
 "colorscheme gruvbox
-colorscheme dracula
+"colorscheme dracula
+colorscheme onedark
 syntax on
 let g:Powerline_symbols = "fancy"
 set termencoding=utf-8 
@@ -123,7 +124,7 @@ if version >= 700
 endif
 
 set statusline=[%n]\ %<%f%m%r\ %w\ %y\ \ <%{&fileformat}>%=[%o]\ %l,%c%V\/%L\ \ %P
-hi CursorLine   cterm=NONE ctermbg=NONE ctermfg=yellow guibg=red guifg=white
+hi CursorLine   cterm=NONE ctermbg=NONE ctermfg=green guibg=DarkYellow guifg=black
 hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 
 " Spacing by FileType
@@ -158,3 +159,4 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
+
