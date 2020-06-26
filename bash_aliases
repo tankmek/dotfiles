@@ -1,17 +1,6 @@
 # bash_aliases
 # dotfiles // @tankmek
 
-## some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-alias cp='cp -v'
-alias mv='mv -v'
-alias rm='rm -v'
-# always make full path
-alias mkdir='mkdir -p -v'
-
 # do ls after cd
 cd ()
 {
@@ -34,12 +23,21 @@ fi
 alias tmux='tmux -2'
 
 alias update='sudo slackpkg update && sudo sbocheck'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias cp='cp -v'
+alias mv='mv -v'
+alias rm='rm -v'
+#
+# always make full path
+alias mkdir='mkdir -p -v'
 
 bind -x '"\C-l": clear'
 alias fix='echo -e "\033c"'
 alias bp='printf "\e[?2004l"'
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
-alias ll='ls -alF'
 alias gs='git status -s'
 alias cd..='cd ..'
 
