@@ -5,7 +5,7 @@
 # ssh keys
 KEYS="fakelabs-ed25519 sawbox-ed25519 id_rsa ansible_ed25519"
 
-export PATH="/bin:/usr/bin:/usr/sbin:/sbin:${HOME}.local/bin:/opt/idea/bin:/usr/games"
+export PATH="/bin:/usr/bin:/usr/sbin:/sbin:${HOME}.local/bin:/opt/idea/bin:/opt/clion/bin:/usr/games"
 export HISTSIZE="" # from the source code empty is unstifled
 export HISTCONTROL=ignoreboth
 export HISTIGNORE="ls:cd:history:exit:clear"
