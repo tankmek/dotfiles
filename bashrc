@@ -1,6 +1,11 @@
 # bashrc 
 # dotfiles // @tankmek
 
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
 # Executed for non-login shells
 # If not running interactively, don't do anything
 case $- in
