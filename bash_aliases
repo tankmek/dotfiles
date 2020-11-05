@@ -20,6 +20,11 @@ if [ -x /bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# Use Zeek Container
+if [ -x /usr/bin/podman ]; then
+    alias zeek='podman run --rm -v $(pwd):/pcap:z blacktop/zeek $@ -e "redef LogAscii::use_json=T;"'
+fi
+
 alias tmux='tmux -2'
 
 alias update='sudo slackpkg update && sudo sbocheck'
