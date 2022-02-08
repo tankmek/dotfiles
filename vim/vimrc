@@ -1,6 +1,9 @@
 "custom 20181109
 " dotfiles
 " vimrc @tankmek
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
 set nocompatible
 filetype off
 execute pathogen#infect()
@@ -10,8 +13,6 @@ set background=dark
 "set t_Co=256
 "colorscheme gruvbox
 "colorscheme dracula
-colorscheme onedark
-syntax on
 let g:Powerline_symbols = "fancy"
 set termencoding=utf-8 
 set fileencoding=utf-8
@@ -159,4 +160,5 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
-
+syntax on
+colorscheme onedark
