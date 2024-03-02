@@ -1,0 +1,4 @@
+#!/bin/sh
+
+ln -is $(readlink -f vim/vimrc) ~/.vimrc
+ln -is $(readlink -f gitconfig) ~/.gitconfig
