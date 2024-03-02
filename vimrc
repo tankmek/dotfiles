@@ -2,15 +2,13 @@
 " @tankmek vimrc
 "
 " Dependencies:
+"   - Vim compiled with python3 support
 "   - Vim-Plug: A minimalist Vim plugin manager.
 "   - Powerline: A statusline plugin for vim.
 "
 " Install:
-"  1. curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-"       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"
+"  1. curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "  2. pip install --user powerline-status
-"
 "  3. mkdir -p ~/.vim/{plugged,cache,colors}
 
 
@@ -80,7 +78,7 @@ set relativenumber
 set t_vb=''
 set showmatch
 
-" Enable powerline
+" Enable powerline-status
 " -----------------------
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
@@ -192,6 +190,13 @@ endif
 
 nnoremap <Leader>ln :set relativenumber!<CR>
 nnoremap <Leader>p :set paste!<CR>
+
+" Ensure existence of directories for undo, backup, and swap files
+for dir in [&undodir, &backupdir, &directory]
+    if !isdirectory(expand(dir))
+        call mkdir(expand(dir), "p")
+    endif
+endfor
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
