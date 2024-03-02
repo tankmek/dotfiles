@@ -1,3 +1,0 @@
-#!/bin/sh
-fstrim -v / >> /var/log/fstrim.log
-fstrim -v /home >> /var/log/fstrim.log
