@@ -10,6 +10,7 @@
 "  1. curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "  2. pip install --user powerline-status
 "  3. mkdir -p ~/.vim/{plugged,cache,colors}
+"  4. :PlugInstall
 
 
 " Basic Configuration
