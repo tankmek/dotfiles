@@ -2,7 +2,7 @@
 
 set -eou pipefail
 
- "[*] Updating system and installing packages..."
+ echo "[*] Updating system and installing packages..."
 
 sudo apt update
 sudo apt install -y \
