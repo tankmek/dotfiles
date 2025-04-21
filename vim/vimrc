@@ -49,6 +49,7 @@ set secure
 " -----------------------
 call plug#begin()
 
+Plug 'powerline/powerline'
 Plug 'unblevable/quick-scope' 
 Plug 'romainl/vim-cool'
 Plug 'tpope/vim-surround'
@@ -78,12 +79,6 @@ set showcmd
 set relativenumber
 set t_vb=
 set showmatch
-
-" Enable powerline-status
-" -----------------------
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-
 
 " Cache
 set backupdir=~/.vim/cache/backup//
