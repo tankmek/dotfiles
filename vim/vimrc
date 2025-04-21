@@ -54,6 +54,7 @@ Plug 'unblevable/quick-scope'
 Plug 'romainl/vim-cool'
 Plug 'tpope/vim-surround'
 Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
@@ -69,6 +70,11 @@ set linebreak
 set nomodeline
 set list
 set t_Co=256
+
+" Onedark specific settings
+let g:onedark_termcolors=256
+let g:onedark_terminal_italics=1
+
 let g:Powerline_symbols = "fancy"
 set rtp+=~/.vim/plugged/powerline/powerline/bindings/vim
 set statusline=%!powerline#statusline#render()
@@ -185,8 +191,7 @@ if has('autocmd')
   augroup END
   
   augroup misc
-    autocmd ColorScheme * call UpdateCursorLineHighlight()
-    autocmd vimenter * ++nested colorscheme gruvbox
+    autocmd vimenter * ++nested colorscheme onedark
   augroup END
 
 endif
