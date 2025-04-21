@@ -55,6 +55,8 @@ Plug 'romainl/vim-cool'
 Plug 'tpope/vim-surround'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
+Plug 'mhinz/vim-startify'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
