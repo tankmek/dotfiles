@@ -185,7 +185,7 @@ if has('autocmd')
   augroup END
 
   augroup filetype_settings
-      autocmd! " Clear previous settings for this group
+      au!
 
       " Default to 4 spaces for most things (can be overridden below)
       autocmd FileType * setlocal shiftwidth=4 softtabstop=4 expandtab
