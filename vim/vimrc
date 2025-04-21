@@ -75,6 +75,19 @@ set t_Co=256
 let g:onedark_termcolors=256
 let g:onedark_terminal_italics=1
 
+" onedark.vim override: Don't set a background color when running in a terminal;
+" just use the terminal's background color
+if (has("autocmd") && !has("gui_running"))
+  augroup onedark_colors
+    autocmd!
+    " Define a standard onedark color (adjust if needed, this is from your old config)
+    let s:onedark_fg_color = { "gui": "#ABB2BF", "cterm": "145", "cterm16": "7"}
+    " Use ColorScheme * event to apply override when any colorscheme is loaded
+    " This ensures it works even if onedark is reloaded
+    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:onedark_fg_color }) "No `bg` setting
+  augroup END
+endif
+
 let g:Powerline_symbols = "fancy"
 set rtp+=~/.vim/plugged/powerline/powerline/bindings/vim
 set statusline=%!powerline#statusline#render()
