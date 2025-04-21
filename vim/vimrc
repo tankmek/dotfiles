@@ -185,9 +185,39 @@ if has('autocmd')
   augroup END
 
   augroup filetype_settings
-    autocmd FileType python setlocal ai ts=4 sw=4 et
-    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd FileType json setlocal expandtab ts=2 sw=2
+      autocmd! " Clear previous settings for this group
+
+      " Default to 4 spaces for most things (can be overridden below)
+      autocmd FileType * setlocal shiftwidth=4 softtabstop=4 expandtab
+
+      " Python: PEP 8 standard (4 spaces)
+      autocmd FileType python setlocal shiftwidth=4 softtabstop=4 expandtab autoindent
+
+      " JavaScript, TypeScript, JSON, CSS, SCSS, HTML, Vue, JSX, TSX: Often 2 spaces
+      autocmd FileType javascript,typescript,json,css,scss,html,vue,jsx,tsx
+                  \ setlocal shiftwidth=2 softtabstop=2 expandtab autoindent
+
+      " YAML: Strict indentation, 2 spaces
+      autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 expandtab autoindent
+
+      " Ruby: Conventionally 2 spaces
+      autocmd FileType ruby setlocal shiftwidth=2 softtabstop=2 expandtab autoindent
+
+      " Go: Uses tabs, relies heavily on gofmt
+      autocmd FileType go setlocal shiftwidth=8 softtabstop=8 noexpandtab autoindent
+
+      " Makefiles: MUST use tabs
+      autocmd FileType make setlocal shiftwidth=8 softtabstop=8 noexpandtab
+
+      " Shell scripts: Often 2 or 4 spaces
+      autocmd FileType sh,bash,zsh setlocal shiftwidth=4 softtabstop=4 expandtab autoindent
+
+      " Markdown: Often benefit from wrapping and spell check
+      autocmd FileType markdown setlocal wrap spell shiftwidth=2 softtabstop=2 expandtab
+
+      " Git commit messages: Wrap at 72, specific formatting rules
+      autocmd FileType gitcommit setlocal wrap textwidth=72 spell
+
   augroup END
 
 
