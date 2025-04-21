@@ -76,7 +76,7 @@ set ruler
 syntax on
 set showcmd
 set relativenumber
-set t_vb=''
+set t_vb=
 set showmatch
 
 " Enable powerline-status
@@ -86,10 +86,14 @@ python3 powerline_setup()
 
 
 " Cache
+set backupdir=~/.vim/cache/backup//
+set directory=~/.vim/cache/swap//
+set undodir=~/.vim/cache/undo//
+set viminfofile=~/.vim/cache/.viminfo
+
+set backup
+set swapfile
 set undofile
-set backupdir=~/.vim/cache/
-set directory=~/.vim/cache/
-set undodir=~/.vim/cache/
 
 " Tmux Background Fix
 if &term =~ '256color'
