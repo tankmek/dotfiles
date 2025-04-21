@@ -70,6 +70,9 @@ set nomodeline
 set list
 set t_Co=256
 let g:Powerline_symbols = "fancy"
+set rtp+=~/.vim/plugged/powerline/powerline/bindings/vim
+set statusline=%!powerline#statusline#render()
+set noshowmode
 set cursorline
 set wmh=0
 set laststatus=2
