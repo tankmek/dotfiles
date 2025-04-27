@@ -5,8 +5,11 @@
 
 [core]
     editor = vim
-    pager = less -eFRX -j5 --tabs=4
+    pager = delta
     whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+[interactive]
+    diffFilter = delta --color-only
 
 [color]
     ui = auto
@@ -29,6 +32,21 @@
     last = log -1 --stat
     # Undo last commit but keep changes
     uncommit = reset --soft HEAD^
+[delta]
+    features = side-by-side line-numbers decorations
+    syntax-theme = gruvbox-dark
+    navigate = true    # Use n/p to move between diffs
+    light = false      # Set true if you have a light terminal background
+    line-numbers = true
+    side-by-side = true
+    whitespace-error-style = 22 reverse
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+    mnemonicprefix = true
 
 [gpg]
     program = gpg2
@@ -47,9 +65,6 @@
 
 [status]
     showUntrackedFiles = normal
-
-[diff]
-    mnemonicprefix = true
 
 [credential]
     helper = cache --timeout=3600  # 1 hour credential cache
