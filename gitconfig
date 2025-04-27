@@ -1,44 +1,65 @@
 [user]
-    name = tankmek
+    name = Michael E.
     email = michael@edie.io
     signingkey = B94FEF97E49C9A75
 
 [core]
-    pager = less -eFiJM~ -j3 --tabs=3
     editor = vim
+    pager = less -eFRX -j5 --tabs=4
     whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-    # Speed up commands involving untracked files such as `git status`.
-    # https://git-scm.com/docs/git-update-index#_untracked_cache
-    untrackedCache = true
-
-[github]
-  # https://github.com/blog/180-local-github-config
-  user = tankmek 
-
-[push]
-    # https://git-scm.com/docs/git-config#git-config-pushdefault
-    default = simple
 
 [color]
+    ui = auto
     branch = auto
     diff = auto
-    interactive = auto
     status = auto
-    ui  = true
+    interactive = auto
+
+[alias]
+    co = checkout
+    br = branch
+    st = status
+    ci = commit
+    amend = !git add -A && git commit --amend --no-edit
+    # Short pretty log
+    lg = log --graph --pretty=format:'%C(bold blue)%h%Creset %C(green)(%ar)%Creset %C(white)%s%Creset %C(dim white)- %an%Creset' --abbrev-commit
+    # Graphical detailed log
+    gg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative
+    # Quickly see last commit diff
+    last = log -1 --stat
+    # Undo last commit but keep changes
+    uncommit = reset --soft HEAD^
 
 [gpg]
     program = gpg2
 
-[alias]
-    co = checkout
-    # amend to the previous commit
-    amend = !git add -A && git commit --amend --no-edit
-    # will not work if $LESS env var is set
-    lg =log -n10 --pretty=format:\"%C(magenta)%h%Creset %C(blue)%ad%Creset %<(100)%s %C(cyan)[%an]%Creset\" --date=short
-    gg =log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cgreen<%an>\" --abbrev-commit
+[commit]
+    gpgsign = false
 
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+[push]
+    default = simple
 
 [pull]
-	ff = only
+    ff = only
+
+[merge]
+    ff = only
+
+[status]
+    showUntrackedFiles = normal
+
+[diff]
+    mnemonicprefix = true
+
+[credential]
+    helper = cache --timeout=3600  # 1 hour credential cache
+
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+
+[init]
+    defaultBranch = main
+
+[safe]
+    directory = *
+
