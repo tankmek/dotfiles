@@ -115,18 +115,6 @@ else
 fi
 
 # ========================================
-# Modern Aliases
-# ========================================
-if command -v eza >/dev/null 2>&1; then
-  alias ls='eza --icons --group-directories-first'
-  alias ll='eza -la --icons --group-directories-first --git'
-  alias la='eza -a --icons --group-directories-first'
-  alias lt='eza --tree --icons --group-directories-first --level=2'
-fi
-
-alias cat="$_bat --style=plain --paging=never"
-
-# ========================================
 # FZF + Ripgrep Live Search
 # ========================================
 rg-fzf() {
@@ -173,11 +161,6 @@ cd() {
   builtin cd "$@" && eza --icons --group-directories-first --git-ignore
 }
 
-# Source dedicated alias file if it exists
-if [ -f ~/.zsh_aliases ]; then
-  source ~/.zsh_aliases
-fi
-
 # ========================================
 # Syntax Highlighting
 # ========================================
@@ -222,3 +205,14 @@ setopt NO_BEEP
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init --cmd z zsh)"
 fi
+
+# ========================================
+# Yazi File Manager
+# ========================================
+function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    command yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd < "$tmp"
+    [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
+}
