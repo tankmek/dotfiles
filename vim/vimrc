@@ -2,21 +2,17 @@
 " @tankmek Production vimrc
 "
 " Dependencies:
-"   - Vim compiled with +python3 support
 "   - Vim-Plug
-"   - Powerline (via pipx or pip)
 "
 " Install:
 "   1. curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"   2. pipx install powerline-status
-"   3. mkdir -p ~/.vim/{plugged,cache,colors}
-"   4. Launch Vim and run :PlugInstall
+"   2. mkdir -p ~/.vim/{plugged,cache,colors}
+"   3. Launch Vim and run :PlugInstall
 "
 
 " ===================================
 " Core Settings
 " ===================================
-set nocompatible
 filetype plugin indent on
 syntax on
 
@@ -27,9 +23,9 @@ set history=1000
 set scrolloff=5
 set visualbell noerrorbells
 set updatetime=100
-set ttyfast
-set modeline
+set nomodeline
 set secure
+set autoread
 
 set shiftwidth=4
 set tabstop=4
@@ -38,7 +34,7 @@ set expandtab
 set preserveindent
 set autoindent
 set nosmartindent
-set fo=tcrq
+set formatoptions=tcrqj
 set ignorecase smartcase
 set splitbelow splitright
 set hlsearch incsearch
@@ -54,8 +50,10 @@ set cursorline
 set laststatus=2
 set noshowmode
 set ruler
-set t_Co=256
 set background=dark
+set wildmenu
+set wildmode=longest:full,full
+set wildignore+=*.o,*.obj,*.pyc,__pycache__,*.swp,.git
 
 if has("termguicolors")
   set termguicolors
@@ -70,11 +68,10 @@ endif
 
 let mapleader = ","
 
-" Tmux + TrueColor fix
-if empty($TMUX)
-  if exists('$NVIM_TUI_ENABLE_TRUE_COLOR')
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
+" Tmux true-color escape sequences
+if !empty($TMUX)
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
 " ===================================
@@ -82,16 +79,25 @@ endif
 " ===================================
 call plug#begin('~/.vim/plugged')
 
-Plug 'powerline/powerline'
+Plug 'itchyny/lightline.vim'
 Plug 'unblevable/quick-scope'
 Plug 'romainl/vim-cool'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'mhinz/vim-startify'
-Plug 'sheerun/vim-polyglot'
 
 call plug#end()
+
+" ===================================
+" Lightline Statusline
+" ===================================
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'separator':    { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+      \ }
 
 " ===================================
 " Colorscheme / Appearance
@@ -123,29 +129,31 @@ endif
 " Set your default theme
 colorscheme gruvbox
 
-" Powerline Statusline
-let g:Powerline_symbols = 'fancy'
-set rtp+=~/.vim/plugged/powerline/powerline/bindings/vim
-set statusline=%!powerline#statusline#render()
-
 " ===================================
 " Persistent Undo / Backup / Swap
 " ===================================
 set backup
 set swapfile
-set undofile
+
+if has('persistent_undo')
+  set undofile
+  set undodir=~/.vim/cache/undo//
+endif
 
 set backupdir=~/.vim/cache/backup//
 set directory=~/.vim/cache/swap//
-set undodir=~/.vim/cache/undo//
 set viminfofile=~/.vim/cache/.viminfo
 
 " Auto-create necessary directories
-for dir in [&undodir, &backupdir, &directory]
+for dir in [&backupdir, &directory]
   if !isdirectory(expand(dir))
     call mkdir(expand(dir), "p")
   endif
 endfor
+
+if has('persistent_undo') && !isdirectory(expand(&undodir))
+  call mkdir(expand(&undodir), "p")
+endif
 
 " ===================================
 " Autocommands
@@ -163,8 +171,6 @@ augroup END
 " Filetype-specific indent settings
 augroup filetype_settings
   autocmd!
-
-  autocmd FileType * setlocal shiftwidth=4 softtabstop=4 expandtab
 
   autocmd FileType python setlocal shiftwidth=4 softtabstop=4 expandtab autoindent
   autocmd FileType javascript,typescript,json,css,scss,html,vue,jsx,tsx setlocal shiftwidth=2 softtabstop=2 expandtab autoindent
@@ -184,7 +190,11 @@ function! UpdateCursorLineHighlight()
     highlight CursorLine cterm=NONE ctermbg=254 ctermfg=NONE guibg=#dcdcdc guifg=NONE
   endif
 endfunction
-autocmd VimEnter * call UpdateCursorLineHighlight()
+
+augroup cursorline_highlight
+  autocmd!
+  autocmd VimEnter,ColorScheme * call UpdateCursorLineHighlight()
+augroup END
 
 " Quick mappings
 nnoremap <Leader>ln :set relativenumber!<CR>
