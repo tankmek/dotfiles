@@ -1,26 +1,26 @@
-# 🛠️ Michael's Dotfiles
+# Michael's Dotfiles
 
-## 📂 Overview
+Personal configuration files for macOS and Debian/Ubuntu systems.
 
-A curated collection of my Linux configuration files for:
+## Directory Structure
 
-- 🖥️ Shells: `bash/`, `zsh/`
-- 🖋️ Editors: `vim/`
-- 🖥️ Terminal Multiplexer: `tmux/`
-- 🖼️ Window Manager: `i3_config`, `xfce4/`
-- 📜 Fonts and UI: `fontconfig/`
-- 🔐 GPG Configuration: `gpg.conf`
-- 🛡️ Git Configuration: `gitconfig`
+| Directory / File | Description |
+|---|---|
+| `bash/` | Bash shell config and aliases |
+| `zsh/` | Zsh shell config (Oh My Zsh, plugins) |
+| `vim/` | Vim config with vim-plug and gruvbox |
+| `tmux/` | Tmux config with TPM and gruvbox theme |
+| `ranger/` | Ranger file manager config |
+| `bin/` | Utility scripts (archive extractor, color test, password generator) |
+| `gitconfig` | Git config (delta pager, SSH for GitHub, ff-only) |
+| `gpg.conf` | GPG agent settings |
+| `.gitignore` | Repo-level ignores |
+| `archive/` | Legacy configs (i3, xfce4, fontconfig, old scripts) |
 
-## ⚡ Quick Setup
+## Key Tools
 
-Clone the repository:
+eza, bat, fzf, zoxide, ripgrep, delta, ranger
 
-```bash
-git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-./install.sh
-```
 ```
 _________________________
 < dotfiles >
