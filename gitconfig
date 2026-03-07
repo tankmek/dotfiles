@@ -5,18 +5,17 @@
 
 [core]
     editor = vim
-    pager = delta
+    pager = delta || less -FRX
     whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+[init]
+    defaultBranch = main
 
 [interactive]
     diffFilter = delta --color-only
 
 [color]
     ui = auto
-    branch = auto
-    diff = auto
-    status = auto
-    interactive = auto
 
 [alias]
     co = checkout
@@ -32,21 +31,28 @@
     last = log -1 --stat
     # Undo last commit but keep changes
     uncommit = reset --soft HEAD^
+
 [delta]
-    features = side-by-side line-numbers decorations
     syntax-theme = gruvbox-dark
-    navigate = true    # Use n/p to move between diffs
-    light = false      # Set true if you have a light terminal background
+    navigate = true
+    light = false
     line-numbers = true
     side-by-side = true
+    decorations = true
+    file-style = bold yellow ul
+    file-decoration-style = yellow ol
+    hunk-header-style = file line-number syntax
+    hunk-header-decoration-style = blue box
     whitespace-error-style = 22 reverse
 
 [merge]
-    conflictstyle = diff3
+    conflictstyle = zdiff3
+    ff = only
 
 [diff]
     colorMoved = default
     mnemonicprefix = true
+    algorithm = histogram
 
 [gpg]
     program = gpg2
@@ -55,26 +61,35 @@
     gpgsign = false
 
 [push]
-    default = simple
+    autoSetupRemote = true
 
 [pull]
-    ff = only
+    rebase = true
 
-[merge]
-    ff = only
+[fetch]
+    prune = true
 
-[status]
-    showUntrackedFiles = normal
+[rerere]
+    enabled = true
 
-[credential]
-    helper = cache --timeout=3600  # 1 hour credential cache
+[column]
+    ui = auto
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = -version:refname
 
 [url "git@github.com:"]
     insteadOf = https://github.com/
 
-[init]
-    defaultBranch = main
-
 [safe]
     directory = *
 
+# OS-specific settings (credential helpers, etc.)
+[includeIf "gitdir:/Users/"]
+    path = ~/.gitconfig-macos
+
+[includeIf "gitdir:/home/"]
+    path = ~/.gitconfig-linux
