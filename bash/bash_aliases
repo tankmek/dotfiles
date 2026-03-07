@@ -27,7 +27,6 @@ fi
 
 alias tmux='tmux -2'
 
-alias update='sudo slackpkg update && sudo sbocheck'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -52,7 +51,16 @@ alias sshno='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no
 alias preview='fzf --height=50% --layout=reverse --preview="bat --color=always {}"'
 # alias cat with bat if installed
 if type bat &> /dev/null; then
-    alias cat='bat'
+    alias cat='bat --style=plain --paging=never'
+elif type batcat &> /dev/null; then
+    alias cat='batcat --style=plain --paging=never'
+fi
+
+# eza aliases (modern ls replacement)
+if type eza &> /dev/null; then
+    alias ls='eza --icons --group-directories-first'
+    alias ll='eza -la --icons --group-directories-first --git'
+    alias la='eza -a --icons --group-directories-first'
 fi
 # Add an "alert" alias for long running commands.
 # sleep 10; alert

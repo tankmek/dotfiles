@@ -86,12 +86,9 @@ fi
 
 # GIT bash integration
 RHEL='/usr/share/git-core/contrib/completion/git-prompt.sh'
-SLCK='/usr/doc/git-2.14.5/contrib/completion/git-prompt.sh'
 
 if [[ -e $RHEL ]]; then
   GPROMPT=$RHEL
-  else
-    GPROMPT=$SLCK
 fi
 
 if [[ -e $GPROMPT ]]; then
