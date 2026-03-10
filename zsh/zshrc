@@ -207,6 +207,13 @@ if command -v zoxide >/dev/null 2>&1; then
 fi
 
 # ========================================
+# Faves
+# ========================================
+if command -v faves >/dev/null 2>&1; then
+  eval "$(faves --init)"
+fi
+
+# ========================================
 # Yazi File Manager
 # ========================================
 function y() {
