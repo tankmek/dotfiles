@@ -127,6 +127,7 @@ if has("autocmd") && !has("gui_running")
 endif
 
 " Set your default theme
+let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 
 " ===================================
