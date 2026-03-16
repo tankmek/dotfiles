@@ -78,16 +78,16 @@ endif
 " Plugin Manager
 " ===================================
 call plug#begin('~/.vim/plugged')
-
-Plug 'itchyny/lightline.vim'
-Plug 'unblevable/quick-scope'
-Plug 'romainl/vim-cool'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
-Plug 'mhinz/vim-startify'
-
+  Plug 'itchyny/lightline.vim'
+  Plug 'unblevable/quick-scope'
+  Plug 'romainl/vim-cool'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-commentary'
+  Plug 'morhetz/gruvbox'
+  Plug 'joshdick/onedark.vim'
+  Plug 'mhinz/vim-startify'
+  Plug 'tpope/vim-fugitive' 
+  Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " ===================================
@@ -98,7 +98,20 @@ let g:lightline = {
       \ 'separator':    { 'left': "\ue0b0", 'right': "\ue0b2" },
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
       \ }
+" ===================================
+" GitGutter Sign Column
+" ===================================
+" Use cleaner symbols (requires a font that supports these, or use standard +/-)
+let g:gitgutter_sign_added = '┃'
+let g:gitgutter_sign_modified = '┃'
+let g:gitgutter_sign_removed = '◢'
+let g:gitgutter_sign_removed_first_line = '◥'
+let g:gitgutter_sign_modified_removed = '┣'
 
+" Optional: Highlight the line numbers themselves based on git state
+" (This is very '2026'—cleaner than symbols in the margin)
+let g:gitgutter_line_nr_highlights = 1
+"
 " ===================================
 " Colorscheme / Appearance
 " ===================================
