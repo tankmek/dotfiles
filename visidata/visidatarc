@@ -1,0 +1,1 @@
+options.row_limit = 10000 # Only load first 10k rows initially (press 'gL' to load all)
