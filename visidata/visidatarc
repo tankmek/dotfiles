@@ -1,1 +1,18 @@
-options.row_limit = 10000 # Only load first 10k rows initially (press 'gL' to load all)
+import sys, os
+from visidata import vd
+
+# ── Themes & plugins ────────────────────────────────────────────────────
+_plugins = os.path.join(os.path.expanduser('~/.visidata'), 'plugins')
+if _plugins not in sys.path:
+    sys.path.insert(0, _plugins)
+
+import gruvbox_themes
+import dfir
+
+options.theme = "gruvbox_patina"
+
+# ── Display options ──────────────────────────────────────────────────────
+options.disp_date_fmt = '%Y-%m-%d %H:%M:%S'
+options.disp_float_fmt = '{:,.0f}'    # thousands separators (byte counts, event IDs)
+options.quitguard = True              # confirm before quit during investigations
+options.max_rows = 10000  # Only load first 10k rows initially (press 'gL' to load all)
