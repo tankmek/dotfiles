@@ -1,0 +1,47 @@
+# ========================================
+# Environment — runs on EVERY zsh invocation
+# No output, no aliases, no plugins, no evals
+# ========================================
+typeset -U path
+
+export EDITOR="vim"
+export VISUAL="$EDITOR"
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+
+# Base PATH (universally valid directories)
+path=(
+  $HOME/.local/bin
+  $HOME/bin
+  /usr/local/bin
+  $path
+)
+
+# Homebrew flags (only if brew exists)
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  export HOMEBREW_NO_AUTO_UPDATE=1
+  export HOMEBREW_NO_ENV_HINTS=1
+fi
+
+# Pyenv (only if installed)
+if [[ -d "$HOME/.pyenv" ]]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  path=($PYENV_ROOT/bin $path)
+fi
+
+# Go (only if go/bin exists)
+if [[ -d "$HOME/go/bin" ]]; then
+  export GOBIN="$HOME/go/bin"
+  path+=$GOBIN
+fi
+
+# Cargo/Rust (only if installed)
+if [[ -d "$HOME/.cargo/bin" ]]; then
+  path+=$HOME/.cargo/bin
+fi
+
+# Ripgrep config (only if config file exists)
+if [[ -f "$HOME/.config/ripgrep/config" ]]; then
+  export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
+fi

@@ -1,0 +1,15 @@
+# ========================================
+# Login Shell — runs once per session
+# Heavier init that should NOT run in every subshell
+# ========================================
+
+# Homebrew shell environment (PATH, MANPATH, INFOPATH, fpath)
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# Pyenv shims and virtualenv (needs PYENV_ROOT from zshenv)
+if command -v pyenv >/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi

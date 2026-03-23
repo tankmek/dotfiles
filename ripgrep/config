@@ -7,5 +7,8 @@
 # Search files that begin with a .
 --hidden
 
+# Smart case: case-insensitive unless uppercase is used
+--smart-case
+
 --glob=!.git/*
 
